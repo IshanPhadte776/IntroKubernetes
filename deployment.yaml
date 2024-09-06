@@ -1,0 +1,41 @@
+#Info about the deployment of our pods and containers 
+#Info about the pods created, deployed and scaled 
+#API Version is the K8s API version
+apiVersion: apps/v1
+kind: Deployment
+#Data about the Data like the name of the deployment
+metadata:
+  name: hello-world-deployment
+#Desrcibes the desirable deployment of the pods 
+spec:
+  #Desires 2 Pods 
+  replicas: 2
+  #This deployment will manage pods with the following...
+  selector:
+    #If the pod matches the key-value pair of app and hello-world, then we manage it 
+    matchLabels:
+      app: hello-world
+  #Its the blueprint for the pods 
+  template:
+    metadata: 
+      labels:
+        app: hello-world
+    spec:
+    #Each Pods should have the following containers 
+    #Container 
+      containers:
+        #Name
+      - name: introkube-container-1
+      #Image
+        image: ishanphadte/hello-world-app:latest
+        #With these ports 
+        ports:
+        - containerPort: 80
+      # - name: introkube-container-2
+      #   image: ishanphadte/hello-world-app:latest
+      #   ports:
+      #   - containerPort: 81
+      # # - name: introkube-container-3
+      # #   image: ishanphadte/hello-world-app:latest
+      # #   ports:
+      # #   - containerPort: 80

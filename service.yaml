@@ -1,0 +1,24 @@
+#Exposes the Pods for internal and external traffic 
+#API Version is the K8s API version
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-service
+spec:
+  #Specifys the Pods for internal and external traffic
+  selector:
+    app: hello-world
+  ports:
+    #Human readable port
+    - name: port-80
+      protocol: TCP
+      #Input Port
+      port: 80
+      #Output Port
+      targetPort: 80
+    # - name: port-81
+    #   protocol: TCP
+    #   port: 81
+    #   targetPort: 81
+    #   #Tells out cloud provider that we want to provision a load balance for routing traffic 
+  type: LoadBalancer
